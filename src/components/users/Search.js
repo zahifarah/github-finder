@@ -5,13 +5,18 @@ class Search extends Component {
       text: "",
    };
 
+   // "e.target.name" in brackets to pass it as a key, returns "text" in this case
+   // assign "text" whatever is returned from "e.target.value"
+   // which is whatever is typed in the search bar,
+   // constantly assigned and rendered by state via {this.state.text}
+
+   // we're basically writing:    ({  returns "text":   typed value });
+   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
    onSubmit(e) {
       e.preventDefault();
       console.log(this.state.text);
    }
-
-   // using brackets [] to use "e.target.name" which ouputs "text", as a key, to target in the state object
-   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
    render() {
       return (
