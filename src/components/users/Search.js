@@ -10,6 +10,7 @@ class Search extends Component {
       searchUsers: PropTypes.func.isRequired,
       clearUsers: PropTypes.func.isRequired,
       showClear: PropTypes.bool.isRequired,
+      setAlert: PropTypes.func.isRequired,
    };
 
    // "e.target.name" in brackets to pass it as a key, returns "text" in this case
@@ -18,20 +19,27 @@ class Search extends Component {
    // constantly assigned and rendered by state via {this.state.text}
 
    // we're basically writing:    ({  returns "text":   typed value });
-   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+   onChange = (e) =>
+      this.setState({ [e.target.name]: e.target.value });
 
    onSubmit(e) {
       e.preventDefault();
-      // create props function called searchUsers(), passing in the text entered in search bar.
-      this.props.searchUsers(this.state.text);
-      this.setState({ text: "" });
+      if (this.state.text === "") {
+         this.props.setAlert("Please enter something.", "light");
+      } else {
+         // create props function called searchUsers(), passing in the text entered in search bar.
+         this.props.searchUsers(this.state.text);
+         this.setState({ text: "" });
+      }
    }
 
    render() {
       const { showClear, clearUsers } = this.props;
       return (
          <div>
-            <form onSubmit={this.onSubmit.bind(this)} className="form">
+            <form
+               onSubmit={this.onSubmit.bind(this)}
+               className="form">
                <input
                   type="text"
                   name="text"
@@ -46,7 +54,9 @@ class Search extends Component {
                />
             </form>
             {showClear && (
-               <button className="btn btn-light btn-block" onClick={clearUsers}>
+               <button
+                  className="btn btn-light btn-block"
+                  onClick={clearUsers}>
                   Clear
                </button>
             )}
