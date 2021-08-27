@@ -2,18 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-// type-checking
-Navbar.propTypes = {
-   title: PropTypes.string.isRequired,
-   icon: PropTypes.string.isRequired,
-};
-
-// defaults to this
-Navbar.defaultProps = {
-   title: "Github Finder",
-   icon: "fab fa-github",
-};
-
 const Navbar = ({ icon, title }) => {
    return (
       <nav className="navbar bg-primary">
@@ -30,6 +18,18 @@ const Navbar = ({ icon, title }) => {
          </ul>
       </nav>
    );
+};
+
+// defaults to this
+Navbar.defaultProps = {
+   title: "Github Finder",
+   icon: "fab fa-github",
+};
+
+// type-checking
+Navbar.propTypes = {
+   title: PropTypes.string.isRequired,
+   icon: PropTypes.string.isRequired,
 };
 
 export default Navbar;
