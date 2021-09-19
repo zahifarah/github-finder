@@ -60,10 +60,11 @@ class App extends Component {
           <Navbar />
           <div className="container">
             <Alert alert={this.state.alert} />
+
             <Switch>
               <Route
                 exact
-                path="/github-finder/home"
+                path="/home"
                 render={props => (
                   <Fragment>
                     <Search
