@@ -63,7 +63,7 @@ class App extends Component {
             <Switch>
               <Route
                 exact
-                path="/home"
+                path="/github-finder/home"
                 render={props => (
                   <Fragment>
                     <Search
